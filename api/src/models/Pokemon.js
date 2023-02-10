@@ -43,10 +43,10 @@ module.exports = (sequelize) => {
       },
       image: {
         type: DataTypes.TEXT,
+        defaultValue: "https://lorempokemon.fakerapi.it/pokemon",
       },
-      dataBase: {
+      inDataBase: {
         type: DataTypes.BOOLEAN,
-        allowNull: false,
         defaultValue: true,
       },
     },
