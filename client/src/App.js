@@ -1,5 +1,4 @@
-import Home from "./views/Home/Home";
-import Landing from "./views/Landing/Landing";
+import { Detail, Form, Home, Landing } from "./views";
 import { Route } from "react-router-dom";
 
 function App() {
@@ -9,7 +8,15 @@ function App() {
         <Landing />
       </Route>
 
-      <Route exact path="/home">
+      <Route path="/create">
+        <Form />
+      </Route>
+
+      <Route path="/detail">
+        <Detail />
+      </Route>
+
+      <Route path="/home">
         <Home />
       </Route>
     </div>
