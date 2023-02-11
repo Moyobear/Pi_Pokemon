@@ -15,7 +15,7 @@ module.exports = (sequelize) => {
       },
       naturaleza: {
         type: DataTypes.STRING,
-        defaultValue: "normal",
+        // defaultValue: "normal",
         allowNull: false,
       },
     },
