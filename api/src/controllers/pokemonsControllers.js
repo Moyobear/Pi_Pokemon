@@ -104,9 +104,7 @@ const createPokemon = async (
   height,
   weight,
   image,
-  type,
-  type2,
-  type3
+  type
 ) => {
   const newPokemon = await Pokemon.create({
     name,
@@ -118,18 +116,9 @@ const createPokemon = async (
     weight,
     image,
   });
-  console.log(type, type2, type3);
+  console.log(type);
   const newType = await Type.create({ naturaleza: type });
-  await newPokemon.addTypes(newType.id);
-
-  if (type2 !== undefined) {
-    const newType2 = await Type.create({ naturaleza: type2 });
-    await newPokemon.addTypes(newType2.id);
-  }
-  if (type3 !== undefined) {
-    const newType3 = await Type.create({ naturaleza: type3 });
-    await newPokemon.addTypes(newType3.id);
-  }
+  await newPokemon.addTypes(newType);
 
   const request = await Pokemon.findOne({
     where: { name: { [Op.iLike]: `%${name}%` } },

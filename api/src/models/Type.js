@@ -14,8 +14,7 @@ module.exports = (sequelize) => {
         unique: true,
       },
       naturaleza: {
-        type: DataTypes.STRING,
-        // defaultValue: "normal",
+        type: DataTypes.ARRAY(DataTypes.STRING),
         allowNull: false,
       },
     },
