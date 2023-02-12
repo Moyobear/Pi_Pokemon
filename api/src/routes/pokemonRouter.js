@@ -5,7 +5,7 @@ const {
   createPokemonHandler,
   updatePokemonsHandler,
   deletePokemonsHandler,
-  rutaDePrueba,
+  getDatabaseHandler,
 } = require("../handlers/pokemonsHandlers");
 
 const {
@@ -15,12 +15,12 @@ const {
 // ?Acá están definidas las rutas de pokemons:
 const pokemonRouter = Router();
 
-// !ESTA RUTA ES DE PRUEBA:
-pokemonRouter.get("/pokemondb", rutaDePrueba);
+// !ESTA RUTA SÓLO TRAE LOS POKEMONS DE LA BASE DE DATOS:
+pokemonRouter.get("/pokemondb", getDatabaseHandler);
 
 pokemonRouter.get("/", getPokemonsHandler);
 
-pokemonRouter.get("/:idPokemon", getPokemonHandler);
+pokemonRouter.get("/:id", getPokemonHandler);
 
 pokemonRouter.post("/", validadorCreate, createPokemonHandler);
 

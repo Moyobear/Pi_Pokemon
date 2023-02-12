@@ -2,7 +2,7 @@ const { Pokemon, Type } = require("../db");
 const { Op } = require("sequelize");
 const axios = require("axios");
 
-// !Esta función permite tomar el array de objetos que llega de la api y extraer SOLO las propiedades que requerimos de el:
+// !Este Helper permite tomar el array de objetos que llega de la api y extraer SOLO las propiedades que requerimos de el:
 const itemFilter = (item) => {
   return {
     id: item.id,
@@ -22,9 +22,8 @@ const itemFilter = (item) => {
   };
 };
 
-// !CONTROLLER PRUEBA:
-// Nos permite traer todos los pokemon exclusivamente de la Base de Datos:
-const pruebaDataBase = async () => {
+// *CONTROLLER: Este Helper nos permite traer todos los pokemon exclusivamente de la Base de Datos:
+const getFromDatabase = async () => {
   const dbPokemons = await Pokemon.findAll({
     include: {
       model: Type,
@@ -38,7 +37,7 @@ const pruebaDataBase = async () => {
 // Traemos todos los pokemon (Api y BDD):
 const getAllPokemons = async () => {
   // *Los de la Base de Datos:
-  const dataBasePokemons = await pruebaDataBase();
+  const dataBasePokemons = await getFromDatabase();
   // *Los de la Api:
   const request = await axios
     .get("https://pokeapi.co/api/v2/pokemon?limit=40&offset=0")
@@ -116,7 +115,7 @@ const createPokemon = async (
     weight,
     image,
   });
-  console.log(type);
+
   const newType = await Type.create({ naturaleza: type });
   await newPokemon.addTypes(newType);
 
@@ -142,7 +141,13 @@ const updatePokemon = async (
   height,
   weight
 ) => {
-  const request = await Pokemon.findByPk(id);
+  const request = await Pokemon.findByPk(id, {
+    include: {
+      model: Type,
+      attributes: ["naturaleza"],
+      through: { attributes: [] },
+    },
+  });
   request.set({
     hp: hp,
     attack: attack,
@@ -170,5 +175,5 @@ module.exports = {
   itemFilter,
   updatePokemon,
   deletePokemon,
-  pruebaDataBase,
+  getFromDatabase,
 };

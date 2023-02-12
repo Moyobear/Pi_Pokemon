@@ -5,7 +5,7 @@ const {
   searchPokemonByName,
   updatePokemon,
   deletePokemon,
-  pruebaDataBase,
+  getFromDatabase,
 } = require("../controllers/pokemonsControllers");
 
 // *Acá vamos a tener todos los handlers del modelo Pokemon:
@@ -24,6 +24,7 @@ const getPokemonsHandler = async (req, res) => {
 const getPokemonHandler = async (req, res) => {
   try {
     const { id } = req.params;
+    console.log(id);
     if (!id) throw Error("El Id es necesario para buscar el pokemon");
     const source = isNaN(id) ? "bdd" : "api";
     const request = await getPokemonById(id, source);
@@ -87,9 +88,9 @@ const deletePokemonsHandler = async (req, res) => {
   }
 };
 
-const rutaDePrueba = async (req, res) => {
+const getDatabaseHandler = async (req, res) => {
   try {
-    const request = await pruebaDataBase();
+    const request = await getFromDatabase();
     return res.status(200).json(request);
   } catch (error) {
     return res.status(400).json({ error: error.message });
@@ -102,5 +103,5 @@ module.exports = {
   createPokemonHandler,
   updatePokemonsHandler,
   deletePokemonsHandler,
-  rutaDePrueba,
+  getDatabaseHandler,
 };
