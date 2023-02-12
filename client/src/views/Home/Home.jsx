@@ -1,7 +1,10 @@
-import React from 'react'
+import React from "react";
+import CardsContainer from "../../components/CardsContainer/CardsContainer";
 
 export default function Home() {
   return (
-    <div>Esta es la vista de Home</div>
-  )
+    <div>
+      <CardsContainer />
+    </div>
+  );
 }

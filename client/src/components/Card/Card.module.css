@@ -1,0 +1,9 @@
+.contenedorCard {
+  width: 20rem;
+}
+
+.imgCard {
+  max-width: 17rem;
+  height: 17rem;
+  margin: 0 auto;
+}
