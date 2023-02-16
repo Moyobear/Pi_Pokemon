@@ -1,9 +1,9 @@
 .contenedor {
-  margin: 0 auto;
-  margin-top: 2rem;
-  max-width: 90vw;
-  justify-content: center;
-  gap: 1rem;
+  min-height: 100vh;
   display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
   flex-wrap: wrap;
 }
