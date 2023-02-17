@@ -14,11 +14,28 @@ const itemFilter = (item) => {
     height: item.height,
     weight: item.weight,
     image: item.sprites.other.dream_world.front_default,
-    types:
+    type:
       item.types.length < 2
         ? [item.types[0].type.name]
         : [item.types[0].type.name, item.types[1].type.name],
     inDataBase: false,
+  };
+};
+
+const filterDB = (item) => {
+  return {
+    id: item.id,
+    name: item.name,
+    hp: item.hp,
+    attack: item.attack,
+    defense: item.defense,
+    speed: item.speed,
+    height: item.height,
+    weight: item.weight,
+    image: item.image,
+    type: item.Types.map((element) => element.type).flat(),
+    // type: item.Types[0].type,
+    inDataBase: item.inDataBase,
   };
 };
 
@@ -27,11 +44,13 @@ const getFromDatabase = async () => {
   const dbPokemons = await Pokemon.findAll({
     include: {
       model: Type,
-      attributes: ["naturaleza"],
+      attributes: ["type"],
       through: { attributes: [] },
     },
   });
-  return dbPokemons;
+
+  let filtro = dbPokemons.map((item) => filterDB(item));
+  return filtro;
 };
 
 // Traemos todos los pokemon (Api y BDD):
@@ -40,7 +59,7 @@ const getAllPokemons = async () => {
   const dataBasePokemons = await getFromDatabase();
   // *Los de la Api:
   const request = await axios
-    .get("https://pokeapi.co/api/v2/pokemon?limit=40&offset=0")
+    .get("https://pokeapi.co/api/v2/pokemon?limit=100&offset=0")
     .then((res) => res.data.results);
 
   const subRequest = request.map((item) => axios.get(item.url));
@@ -58,12 +77,14 @@ const searchPokemonByName = async (name) => {
     where: { name: { [Op.iLike]: `%${name}%` } },
     include: {
       model: Type,
-      attributes: ["naturaleza"],
+      attributes: ["type"],
       through: { attributes: [] },
     },
   });
-  if (pokemonDatabase) return pokemonDatabase;
-  else {
+  if (pokemonDatabase) {
+    let filtro = filterDB(pokemonDatabase);
+    return filtro;
+  } else {
     // *Buscamos en la Api:
     const pokemonApiRequest = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${name}`
@@ -80,16 +101,9 @@ const getPokemonById = async (id, source) => {
     const pokemon = itemFilter(request.data);
     return pokemon;
   } else {
-    const request = await Pokemon.findByPk(id, {
-      where: {
-        include: {
-          model: Type,
-          attributes: ["naturaleza"],
-          through: { attributes: [] },
-        },
-      },
-    });
-    return request;
+    const request = await getFromDatabase();
+    let filtro = request.filter((item) => item.id === id);
+    return filtro[0];
   }
 };
 
@@ -105,7 +119,7 @@ const createPokemon = async (
   image,
   type
 ) => {
-  const newPokemon = await Pokemon.create({
+  let newPokemon = await Pokemon.create({
     name,
     hp,
     attack,
@@ -116,19 +130,19 @@ const createPokemon = async (
     image,
   });
 
-  const newType = await Type.create({ naturaleza: type });
-  await newPokemon.addTypes(newType);
+  let typeDb = await Type.findAll({ where: { type: type } });
+  await newPokemon.addType(typeDb);
 
   const request = await Pokemon.findOne({
     where: { name: { [Op.iLike]: `%${name}%` } },
     include: {
       model: Type,
-      attributes: ["naturaleza"],
+      attributes: ["type"],
       through: { attributes: [] },
     },
   });
-
-  return request;
+  let filtro = filterDB(request);
+  return filtro;
 };
 
 // Ubicamos un pokemon en la BDD y actualizamos sólo los campos que tienen valores por defecto:
@@ -144,7 +158,7 @@ const updatePokemon = async (
   const request = await Pokemon.findByPk(id, {
     include: {
       model: Type,
-      attributes: ["naturaleza"],
+      attributes: ["type"],
       through: { attributes: [] },
     },
   });
@@ -157,14 +171,17 @@ const updatePokemon = async (
     weight: weight,
   });
   await request.save();
-  return request;
+  let filtro = filterDB(request);
+  return filtro;
+  // return request;
 };
 
 // Eliminamos un pokemon de la Base de Datos ubicándolo por Id:
 const deletePokemon = async (id) => {
   const request = await Pokemon.findByPk(id);
   await request.destroy();
-  return request;
+
+  return "El Pokemon fue borrado exitosamente";
 };
 
 module.exports = {

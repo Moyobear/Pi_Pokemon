@@ -20,9 +20,9 @@ export default function NavBar() {
         <Link to="/create" className={style.link}>
           Crear
         </Link>
-        <Link to="/update" className={style.link}>
+        {/* <Link to="/update" className={style.link}>
           Actualizar
-        </Link>
+        </Link> */}
         <Link to="/about" className={style.link}>
           Acerca de
         </Link>

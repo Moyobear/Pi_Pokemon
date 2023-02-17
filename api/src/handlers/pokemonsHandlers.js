@@ -24,7 +24,6 @@ const getPokemonsHandler = async (req, res) => {
 const getPokemonHandler = async (req, res) => {
   try {
     const { id } = req.params;
-    console.log(id);
     if (!id) throw Error("El Id es necesario para buscar el pokemon");
     const source = isNaN(id) ? "bdd" : "api";
     const request = await getPokemonById(id, source);
@@ -79,10 +78,7 @@ const deletePokemonsHandler = async (req, res) => {
     if (!id)
       throw Error("El Id es necesario para buscar el pokemon y eliminarlo");
     const request = await deletePokemon(id);
-    return res.status(200).send({
-      msg: "El pokemon fue eliminado exitosamente de la base de datos",
-      request,
-    });
+    return res.status(200).send(request);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }

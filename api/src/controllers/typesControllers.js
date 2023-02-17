@@ -15,22 +15,18 @@ const searchByType = async () => {
   // *apiPokemons es el array de objetos ya estructurado que se va a la base de datos:
   const apiPokemons = details
     .map((item) => itemFilter(item))
-    .map((item) => item.types)
+    .map((item) => item.type)
     .flat();
-
-  // *Guardamos todos los tipos obtenidos de la request (muchos se repiten):
-  // let innerDB = await apiPokemons.map((item) =>
-  //   Type.findOrCreate({ where: { naturaleza: item } })
-  // );
-
-  // *Ó tambien podemos guardar valores únicos... (que no esten repetidos):
-  const clearTypes = new Set(apiPokemons);
-  clearTypes.forEach(function (item) {
-    Type.findOrCreate({ where: { naturaleza: item } });
+  // *Guardamos todos los tipos obtenidos de la request:
+  let setTypes = new Set(apiPokemons);
+  // apiPokemons.map((item) => Type.findOrCreate({ where: { type: item } }));
+  await setTypes.forEach(function (item) {
+    Type.findOrCreate({ where: { type: item } });
   });
 
   const pokemonDatabase = await Type.findAll();
-  return pokemonDatabase;
+  let filtro = pokemonDatabase.map((item) => item.type);
+  return filtro;
 };
 
 module.exports = {

@@ -1,51 +1,78 @@
 import React from "react";
 import { useParams, Link } from "react-router-dom";
-import { useSelector, useEffect } from "react";
-// import axios from "axios";
+import { useEffect } from "react";
 import style from "./Detail.module.css";
-import { useDispatch } from "react-redux";
-import { getPokemonDetail } from "../../redux/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { getPokemonDetail, clearDetail } from "../../redux/actions";
 
 export default function Detail() {
-  const { detailId } = useParams();
-  const pokemon = useSelector((state) => state.detail);
+  const { id } = useParams();
   const dispatch = useDispatch();
-  console.log(detailId);
 
   useEffect(() => {
-    dispatch(getPokemonDetail(detailId));
-  }, [detailId, dispatch]);
+    dispatch(getPokemonDetail(id));
+    return () => {
+      dispatch(clearDetail());
+    };
+  }, [dispatch, id]);
+
+  const detail = useSelector((state) => state.detail);
 
   return (
     <div className={style.padre}>
       <div className={style.botonera}>
         <Link to={"/home"}>
-          <button className={style.botonAtras}>Inicio</button>
+          <button className={style.botonAtras}>Atras</button>
         </Link>
 
-        {pokemon.inDataBase === true ? (
-          <Link to={"/update"}>
-            <button className={style.botonUpdate}>Actualizar</button>
-          </Link>
-        ) : null}
+        {detail.inDataBase === true
+          ? ((
+              <Link to={"/update"}>
+                <button className={style.botonUpdate}>Actualizar</button>
+              </Link>
+            ),
+            (
+              <Link to={`/${id}/delete`}>
+                <button className={style.botonDelete}>Eliminar</button>
+              </Link>
+            ))
+          : null}
       </div>
-      {pokemon ? (
+      {detail ? (
         <div className={style.detalles}>
           <div className={style.imagen}>
-            <img src={pokemon.image} alt={pokemon.name} />
+            <img className={style.image} src={detail.image} alt={detail.name} />
           </div>
           <div className={style.info}>
-            <h2>Nombre: {pokemon.name}</h2>
-            <h5>Vida: {pokemon.hp}</h5>
-            <h5>Ataque: {pokemon.attack}</h5>
-            <h5>Defensa: {pokemon.defense}</h5>
-            <h5>Velocidad: {pokemon.speed}</h5>
-            <h5>Altura: {pokemon.height}</h5>
-            <h5>Peso: {pokemon.weight}</h5>
-            {/* <h5>
-              Tipos: {pokemon.types[0]}, {pokemon.types[1] && pokemon.types[1]},
-              {pokemon.types[2] && pokemon.types[2]}
-            </h5> */}
+            {typeof detail.id === "number" ? (
+              <h2 className={style.nombre}>
+                Id: {detail.id} - {detail.name}
+              </h2>
+            ) : (
+              <div>
+                <h2 className={style.nombre}>{detail.name}</h2>
+                <h2 className={style.id}>Id: {detail.id}</h2>
+              </div>
+            )}
+            <h5 className={style.estadistica}>Vida: {detail.hp}</h5>
+            <h5 className={style.estadistica}>Ataque: {detail.attack}</h5>
+            <h5 className={style.estadistica}>Defensa: {detail.defense}</h5>
+            <h5 className={style.estadistica}>Velocidad: {detail.speed}</h5>
+            <h5 className={style.estadistica}>Altura: {detail.height}</h5>
+            <h5 className={style.estadistica}>Peso: {detail.weight}</h5>
+            {/* {detail.type?.map((item, index) => {
+              return (
+                <h5 key={index} className={style.tipo}>
+                  Tipo{detail.type.length > 1 ? "s" : ""}: <em>{item}</em>
+                </h5>
+              );
+            })} */}
+            <h5 className={style.tipo}>
+              Tipo{detail.type?.length > 1 ? "s" : ""}:
+              {detail.type?.map((item, index) => {
+                return <em key={index}> {item} </em>;
+              })}
+            </h5>
           </div>
         </div>
       ) : null}

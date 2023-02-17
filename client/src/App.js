@@ -13,23 +13,23 @@ function App() {
         <Landing />
       </Route>
 
-      <Route path="/home">
+      <Route exact path="/home">
         <Home />
       </Route>
 
-      <Route path="/create">
+      <Route exact path="/create">
         <Form />
       </Route>
 
-      <Route path="/detail/:detailId">
+      <Route exact path="/detail/:id">
         <Detail />
       </Route>
 
-      <Route path="/update">
+      <Route exact path="/update">
         <Update />
       </Route>
 
-      <Route path="/about">
+      <Route exact path="/about">
         <About />
       </Route>
 

@@ -19,31 +19,24 @@ module.exports = (sequelize) => {
       },
       hp: {
         type: DataTypes.INTEGER,
-        defaultValue: 50,
       },
       attack: {
         type: DataTypes.INTEGER,
-        defaultValue: 50,
       },
       defense: {
         type: DataTypes.INTEGER,
-        defaultValue: 50,
       },
       speed: {
         type: DataTypes.INTEGER,
-        defaultValue: 50,
       },
-      heigth: {
+      height: {
         type: DataTypes.INTEGER,
-        defaultValue: 40,
       },
       weight: {
         type: DataTypes.INTEGER,
-        defaultValue: 30,
       },
       image: {
         type: DataTypes.TEXT,
-        defaultValue: "https://lorempokemon.fakerapi.it/pokemon",
       },
       inDataBase: {
         type: DataTypes.BOOLEAN,

@@ -13,8 +13,8 @@ module.exports = (sequelize) => {
         autoincrement: true,
         unique: true,
       },
-      naturaleza: {
-        type: DataTypes.ARRAY(DataTypes.STRING),
+      type: {
+        type: DataTypes.STRING,
         allowNull: false,
       },
     },

@@ -4,7 +4,7 @@ import Card from "../Card/Card";
 import style from "./CardsContainer.module.css";
 import Loadding from "../Loadding/Loadding";
 
-export default function CardsContainer() {
+export default function CardsContainer({ page, poksXpage }) {
   const pokemons = useSelector((state) => state.pokemons);
 
   return (
@@ -12,17 +12,19 @@ export default function CardsContainer() {
       {!pokemons.length ? (
         <Loadding />
       ) : (
-        pokemons.map((item) => {
-          return (
-            <Card
-              key={item.id}
-              id={item.id}
-              image={item.image}
-              name={item.name}
-              type={item.types}
-            />
-          );
-        })
+        pokemons
+          .slice((page - 1) * poksXpage, (page - 1) * poksXpage + poksXpage)
+          .map((item) => {
+            return (
+              <Card
+                key={item.id}
+                id={item.id}
+                image={item.image}
+                name={item.name}
+                type={item.type}
+              />
+            );
+          })
       )}
     </div>
   );

@@ -8,8 +8,37 @@
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: end;
+  justify-content: space-between;
   align-items: center;
+}
+
+h1 {
+  display: block;
+  text-transform: uppercase;
+  font-size: 3rem;
+  font-family: "Carter One", cursive;
+  white-space: wrap;
+  border-right: 4px solid;
+  width: auto;
+  color: white;
+  animation: typing 2s steps(35), blink 0.3s infinite step-end alternate;
+  overflow: hidden;
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes blink {
+  50% {
+    border-color: transparent;
+  }
+}
+
+strong {
+  color: red;
 }
 
 .resplandor {
@@ -27,6 +56,15 @@
   border-radius: 0.5rem;
   transition: all 0.2s ease;
   margin-bottom: 3rem;
+  animation: fadeIn 6s ease-out;
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 .resplandor::before {
   content: "";
@@ -39,19 +77,21 @@
   background: linear-gradient(
     45deg,
     red,
-    orange,
-    yellow,
-    rgb(207, 90, 1),
+    blue,
+    deeppink,
+    blue,
     red,
-    orange,
-    yellow,
+    blue,
+    deeppink,
+    blue,
     red,
-    orange,
-    yellow,
-    rgb(207, 90, 1),
+    blue,
+    deeppink,
+    blue,
     red,
-    orange,
-    yellow
+    blue,
+    deeppink,
+    blue
   );
   background-size: 600%;
   border-radius: 0.4rem;
