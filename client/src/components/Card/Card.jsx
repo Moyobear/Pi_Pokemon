@@ -13,13 +13,13 @@ export default function Card(props) {
         <div className={style.titulos}>
           <p className={style.name}>{props.name}</p>
           <div className={style.tipos}>
-          {props.type?.map((item, index) => {
-            return (
-              <p key={index} className={style.titulo}>
-                {item}
-              </p>
-            );
-          })}
+            {props.type?.map((item, index) => {
+              return (
+                <p key={index} className={style[item]}>
+                  {item}
+                </p>
+              );
+            })}
           </div>
         </div>
       </div>

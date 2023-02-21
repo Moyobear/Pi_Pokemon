@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import pokebola from "../../Imgs/pokeball.png";
 import style from "./Form.module.css";
 import axios from "axios";
-import { getAllTypes } from "../../redux/actions";
+import { getAllTypes, clearHome } from "../../redux/actions";
 import Loadding from "../../components/Loadding/Loadding";
 
 export default function Form() {
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
   const types = useSelector((state) => state.types);
+  const history = useHistory();
 
   const [pokemonData, setPokemonData] = useState({
     name: "",
@@ -42,28 +44,39 @@ export default function Form() {
 
     setPokemonData({
       ...pokemonData,
-      [e.target.name]: e.target.value,
+      [e.target.name]: e.target.value.toLowerCase(),
     });
   }
 
   function selectHandler(e) {
     setPokemonData({
       ...pokemonData,
-      type:
-        pokemonData.type.length < 2
-          ? [...pokemonData.type, e.target.value]
-          : pokemonData.type,
+      type: [...pokemonData.type, e.target.value.toLowerCase()],
     });
   }
 
   function validate(input) {
     let errors = {};
-    if (!input.name) errors.name = "El nombre del pokemon es requerido";
+    // if (!input.name) errors.name = "El nombre del pokemon es requerido";
     if (!/[A-Za-z]{3,10}/.test(input.name))
       errors.name = "El nombre debe tener de 3 a 10 caracteres";
+    if (/[0-9]/.test(input.name))
+      errors.name = "El nombre no puede tener números";
+    if (input.image === "")
+      errors.image = "Debes generar uan imagen y pegarla en el campo de imagen";
     if (input.type === "") errors.type = "El tipo del pokemon es requerido";
+    if (input.type.length > 2)
+      errors.type = "El pokemón sólo puede tener máximo 2 tipos";
 
     return errors;
+  }
+
+  function handleDelete(e) {
+    let borrar = e.target.innerText;
+    setPokemonData({
+      ...pokemonData,
+      type: pokemonData.type.filter((item) => item !== borrar),
+    });
   }
 
   async function handleSubmit(e) {
@@ -87,14 +100,16 @@ export default function Form() {
         name: "",
         type: "",
       });
-      console.log(...pokemonData);
-      // window.alert("Pokemon creado exitosamente");
 
-      const request = await axios
+      dispatch(clearHome());
+
+      await axios
         .post("http://localhost:3001/pokemons", pokemonData)
-        .then((res) => alert(res.data))
-        .catch((error) => console.log(error.message));
-      return request;
+        .then((res) => {
+          alert("Pokemon creado exitosamente");
+        })
+        .catch((error) => alert(error.message));
+      history.push("/home");
     }
   }
 
@@ -130,9 +145,12 @@ export default function Form() {
           </div>
           <form className={style.formulario} onSubmit={handleSubmit}>
             <div className={style.grupo}>
-              <label htmlFor="name">Nombre: </label>
+              <label className={style.etiquetaRorm} htmlFor="name">
+                Nombre:{" "}
+              </label>
 
               <input
+                className={style.inputForm}
                 name="name"
                 id="name"
                 type="text"
@@ -144,8 +162,11 @@ export default function Form() {
             </div>
 
             <div className={style.grupo}>
-              <label htmlFor="image">Imagen:</label>
+              <label className={style.etiquetaRorm} htmlFor="image">
+                Imagen:
+              </label>
               <input
+                className={style.inputForm}
                 name="image"
                 id="image"
                 type="text"
@@ -169,24 +190,46 @@ export default function Form() {
             </div>
 
             <div className={style.grupo}>
-              <label htmlFor="type">Tipos: </label>
+              <label className={style.etiquetaRorm} htmlFor="type">
+                Tipos:
+              </label>
               <div>
-                <select onChange={selectHandler} multiple>
-                  <option value="disable">
-                    Selecciona los tipos de tu Pokemon:
-                  </option>
-                  {types?.map((item) => (
-                    <option value={item} key={item}>
-                      {item}
+                {pokemonData.type.length >= 2 ? (
+                  ""
+                ) : (
+                  <select
+                    className={style.seleccionar}
+                    value={pokemonData.type}
+                    onChange={(e) => selectHandler(e)}
+                    multiple
+                  >
+                    <option value="" disabled>
+                      Selecciona los tipos de tu Pokemon:
                     </option>
-                  ))}
-                </select>
+                    {types?.map((item) => (
+                      <option value={item} key={item}>
+                        {item}
+                      </option>
+                    ))}
+                  </select>
+                )}
               </div>
               {errors.type && <p className={style.danger}>{errors.type}</p>}
+              <div className={style.seleccionados}>
+                {pokemonData.type
+                  ? pokemonData.type.map((item, index) => (
+                      <div key={index} className={style.elemento}>
+                        <p onClick={(e) => handleDelete(e)}>{item}</p>
+                      </div>
+                    ))
+                  : ""}
+              </div>
             </div>
 
             <div className={style.mainBotones}>
-              {pokemonData.name && pokemonData.type && pokemonData.image ? (
+              {pokemonData.name &&
+              pokemonData.type.length &&
+              pokemonData.image ? (
                 <button className={style.btnCrear} type="submit">
                   Crear Pokemon
                 </button>

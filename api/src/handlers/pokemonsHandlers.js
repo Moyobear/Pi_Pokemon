@@ -48,7 +48,7 @@ const createPokemonHandler = async (req, res) => {
       image,
       type
     );
-    return res.status(201).json(request);
+    return res.status(201).send(request);
   } catch (error) {
     return res.status(400).json({ error: error.message });
   }

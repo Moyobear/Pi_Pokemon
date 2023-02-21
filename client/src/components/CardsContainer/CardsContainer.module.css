@@ -1,5 +1,5 @@
 .contenedor {
-  min-height: 100vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -8,3 +8,12 @@
   flex-wrap: wrap;
 }
 
+.contenedorUnico {
+  min-height: 60vh;
+  display: flex;
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  gap: 3rem;
+  flex-wrap: wrap;
+}

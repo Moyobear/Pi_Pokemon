@@ -6,12 +6,13 @@
 }
 
 .inputSearch {
-  font-family: "Sniglet", cursive;
+  font-family: "Ubuntu", cursive;
   width: 15rem;
   border: none;
   outline: none;
-  font-size: 1.2rem;
+  font-size: 1rem;
   height: 2.8rem;
+  padding-left: 0.8rem;
 }
 
 .iconSearch {

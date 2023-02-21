@@ -1,14 +1,21 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import style from "./SearchBar.module.css";
+import { searchByName } from "../../redux/actions";
 
 export default function SearchBar() {
   const [request, setRequest] = useState("");
-
-  function onSearch(character) {}
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
-    setRequest(e.target.value);
+    setRequest(e.target.value.toLowerCase());
   };
+
+  function onSearch(e) {
+    e.preventDefault();
+    setRequest("");
+    dispatch(searchByName(request));
+  }
 
   return (
     <div className={style.busquedaContenedor}>
@@ -33,7 +40,7 @@ export default function SearchBar() {
         onChange={handleChange}
         placeholder="Buscar pokemon..."
       />
-      <button className={style.btnSearch} onClick={() => onSearch(request)}>
+      <button className={style.btnSearch} onClick={(e) => onSearch(e)}>
         Buscar
       </button>
     </div>

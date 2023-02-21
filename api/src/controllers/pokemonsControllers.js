@@ -61,7 +61,6 @@ const getAllPokemons = async () => {
   const request = await axios
     .get("https://pokeapi.co/api/v2/pokemon?limit=100&offset=0")
     .then((res) => res.data.results);
-
   const subRequest = request.map((item) => axios.get(item.url));
   const urls = await axios.all(subRequest);
   const details = urls.map((item) => item.data);
@@ -83,14 +82,14 @@ const searchPokemonByName = async (name) => {
   });
   if (pokemonDatabase) {
     let filtro = filterDB(pokemonDatabase);
-    return filtro;
+    return [filtro];
   } else {
     // *Buscamos en la Api:
     const pokemonApiRequest = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${name}`
     );
     const pokemonApi = itemFilter(pokemonApiRequest.data);
-    return pokemonApi;
+    return [pokemonApi];
   }
 };
 

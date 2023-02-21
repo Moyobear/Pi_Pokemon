@@ -5,7 +5,7 @@
   background-position: 100% 100%;
   background-attachment: fixed;
   overflow-x: hidden;
-  min-height: 100vh;
+  min-height: 94vh;
   display: flex;
   flex-direction: column;
   justify-content: space-between;

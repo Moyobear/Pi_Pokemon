@@ -1,8 +1,8 @@
-/* .container {
-  background-image: url("../Imgs/fondo2.jpg");
+.container {
+  background-image: url("../Imgs/descarga.jpeg");
   background-repeat: no-repeat;
-  background-size: cover;
-  background-position: 50% 20%;
+  background-size: 40%;
+  background-position: 100% 50%;
   background-attachment: fixed;
   overflow-x: hidden;
-} */
+}

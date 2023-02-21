@@ -8,7 +8,11 @@ export default function CardsContainer({ page, poksXpage }) {
   const pokemons = useSelector((state) => state.pokemons);
 
   return (
-    <div className={style.contenedor}>
+    <div
+      className={
+        pokemons.length === 1 ? style.contenedorUnico : style.contenedor
+      }
+    >
       {!pokemons.length ? (
         <Loadding />
       ) : (
