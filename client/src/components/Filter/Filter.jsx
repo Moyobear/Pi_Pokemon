@@ -11,30 +11,60 @@ import style from "./Filter.module.css";
 
 export default function Filter({ active }) {
   const dispatch = useDispatch();
-  const [reset, setReset] = useState();
+  const [reset, setReset] = useState({
+    Tipo: "",
+    Origen: "",
+    Alfabeto: "",
+    Ataque: "",
+  });
 
-  function handlerFilter(e) {
-    const { name, value } = e.target;
-    if (name === "Tipo") {
-      dispatch(filterType(value));
-      setReset(value);
-    }
-    if (name === "Origen") {
-      dispatch(filterOrigen(value));
-      setReset(value);
-    }
-    if (name === "Alfabeto") {
-      dispatch(ordenAlfabetico(value));
-      setReset(value);
-    }
-    if (name === "Ataque") {
-      dispatch(ordenAtaque(value));
-      setReset(value);
-    }
+  function handlerFilterType(e) {
+    dispatch(filterType(e.target.value));
+    setReset({
+      Tipo: e.target.value,
+      Origen: "",
+      Alfabeto: "",
+      Ataque: "",
+    });
+  }
+
+  function handlerFilterOrigen(e) {
+    dispatch(filterOrigen(e.target.value));
+    setReset({
+      Tipo: "",
+      Origen: e.target.value,
+      Alfabeto: "",
+      Ataque: "",
+    });
+  }
+
+  function handlerFilterAlf(e) {
+    dispatch(ordenAlfabetico(e.target.value));
+    setReset({
+      Tipo: "",
+      Origen: "",
+      Alfabeto: e.target.value,
+      Ataque: "",
+    });
+  }
+
+  function handlerFilterAtaq(e) {
+    dispatch(ordenAtaque(e.target.value));
+    setReset({
+      Tipo: "",
+      Origen: "",
+      Alfabeto: "",
+      Ataque: e.target.value,
+    });
   }
 
   function resetFilter(e) {
-    setReset("");
+    setReset({
+      Tipo: "",
+      Origen: "",
+      Alfabeto: "",
+      Ataque: "",
+    });
     dispatch(clearHome());
   }
 
@@ -47,7 +77,8 @@ export default function Filter({ active }) {
         <select
           name="Tipo"
           className={style.selectorType}
-          onChange={(e) => handlerFilter(e)}
+          value={reset.Tipo}
+          onChange={(e) => handlerFilterType(e)}
         >
           <option value="">Selecciona...</option>
           <option value="all">Todos</option>
@@ -75,7 +106,8 @@ export default function Filter({ active }) {
         <select
           name="Origen"
           className={style.selectorType}
-          onChange={(e) => handlerFilter(e)}
+          value={reset.Origen}
+          onChange={(e) => handlerFilterOrigen(e)}
         >
           <option value="">Selecciona...</option>
           <option value="all">Todos</option>
@@ -89,7 +121,8 @@ export default function Filter({ active }) {
         <select
           name="Alfabeto"
           className={style.selectorType}
-          onChange={(e) => handlerFilter(e)}
+          value={reset.Alfabeto}
+          onChange={(e) => handlerFilterAlf(e)}
         >
           <option value="">Selecciona...</option>
           <option value="az">A-Z</option>
@@ -102,14 +135,15 @@ export default function Filter({ active }) {
         <select
           name="Ataque"
           className={style.selectorType}
-          onChange={(e) => handlerFilter(e)}
+          value={reset.Ataque}
+          onChange={(e) => handlerFilterAtaq(e)}
         >
           <option value="">Selecciona...</option>
           <option value="menor">Más débil</option>
           <option value="mayor">Más fuerte</option>
         </select>
       </div>
-      <button onClick={(e) => resetFilter(e)}>Reset</button>
+      <button className={style.reset} onClick={(e) => resetFilter(e)}>Reset</button>
     </div>
   );
 }

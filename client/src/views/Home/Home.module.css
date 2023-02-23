@@ -2,6 +2,11 @@
   padding: 0 6rem;
   width: 70%;
   margin: 0 auto;
+  margin-bottom: 3rem;
+}
+
+::-webkit-scrollbar {
+  display: none;
 }
 
 .iconFilter {
@@ -27,7 +32,7 @@
 }
 
 .recarga {
-  top: 10rem;
+  top: 17rem;
   left: 10rem;
   color: white;
   background-color: black;

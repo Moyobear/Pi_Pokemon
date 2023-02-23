@@ -4,6 +4,24 @@
   display: flex;
   flex-direction: column;
   margin-top: 3rem;
+  position: relative;
+}
+
+.padreActive {
+  display: flex;
+  flex-direction: column;
+  margin-top: 3rem;
+  position: relative;
+}
+
+.padreActive::after {
+  content: "";
+  background-color: rgba(0, 0, 0, 0.8);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .botonera {
@@ -160,6 +178,12 @@
   margin-top: 3rem;
 }
 
+.grupo {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .estadistica,
 .id,
 .nombre,
@@ -175,9 +199,21 @@
   line-height: 120%;
   letter-spacing: 5px;
 }
+
+.valor {
+  color: #4e31aa;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1.5rem;
+  font-family: "Pokemon Solid", sans-serif;
+  margin: 0.5em 0;
+  line-height: 50%;
+  letter-spacing: 5px;
+}
+
 .nombre {
-  color: red;
+  color: #4e31aa;
   font-size: 1.8rem;
+  text-align: center;
 }
 
 .tipo {
@@ -189,9 +225,242 @@
 }
 .id {
   font-size: 1.5rem;
-  color: red;
+  color: #4e31aa;
 }
 .itemType {
   display: inline;
-  color: red;
+  color: #4e31aa;
+}
+
+.water {
+  color: var(--color-water);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1.1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.grass {
+  color: var(--color-grass);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.poison {
+  color: var(--color-poison);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.fire {
+  color: var(--color-fire);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.bug {
+  color: var(--color-bug);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.dragon {
+  color: var(--color-dragon);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.flying {
+  color: var(--color-flying);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.ground {
+  color: var(--color-ground);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.steel {
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.psychic {
+  color: var(--color-psychic);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.ice {
+  color: var(--color-ice);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.ghost {
+  color: var(--color-ghost);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.normal {
+  color: var(--color-normal);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.rock {
+  color: var(--color-rock);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.electric {
+  color: var(--color-electric);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.fighting {
+  color: var(--color-fighting);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.fairy {
+  color: var(--color-fairy);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
+}
+
+.dark {
+  color: var(--color-dark);
+  display: inline;
+  -webkit-text-stroke: 1px rgb(0, 0, 0);
+  font-size: 1em;
+  font-family: "Pokemon Solid", sans-serif;
+  line-height: 120%;
+  letter-spacing: 5px;
+  margin: 0.5em 0;
+  text-transform: uppercase;
+  margin: 0;
 }

@@ -56,7 +56,7 @@
 .name {
   text-align: center;
   font-weight: 400;
-  color: rgb(114, 0, 0);
+  color: #4e31aa;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
   font-size: 1.2em;
   font-family: "Pokemon Solid", sans-serif;
@@ -89,7 +89,7 @@
   color: var(--color-water);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -102,7 +102,7 @@
   color: var(--color-grass);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -115,7 +115,7 @@
   color: var(--color-poison);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -128,7 +128,7 @@
   color: var(--color-fire);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -141,7 +141,7 @@
   color: var(--color-bug);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -154,7 +154,7 @@
   color: var(--color-dragon);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -167,7 +167,7 @@
   color: var(--color-flying);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -180,7 +180,7 @@
   color: var(--color-ground);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -193,7 +193,7 @@
   color: var(--color-steel);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -206,7 +206,7 @@
   color: var(--color-psychic);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -219,7 +219,7 @@
   color: var(--color-ice);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -232,7 +232,7 @@
   color: var(--color-ghost);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -245,7 +245,7 @@
   color: var(--color-normal);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -256,10 +256,9 @@
 
 .rock {
   color: var(--color-rock);
-  color: var(--color-normal);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -270,10 +269,9 @@
 
 .electric {
   color: var(--color-electric);
-  color: var(--color-normal);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -284,10 +282,9 @@
 
 .fighting {
   color: var(--color-fighting);
-  color: var(--color-normal);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -298,10 +295,9 @@
 
 .fairy {
   color: var(--color-fairy);
-  color: var(--color-normal);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;
@@ -312,10 +308,9 @@
 
 .dark {
   color: var(--color-dark);
-  color: var(--color-normal);
   display: block;
   -webkit-text-stroke: 1px rgb(0, 0, 0);
-  font-size: 1.2em;
+  font-size: 1.1em;
   font-family: "Pokemon Solid", sans-serif;
   line-height: 120%;
   letter-spacing: 5px;

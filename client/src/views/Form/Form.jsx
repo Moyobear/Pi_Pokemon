@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useHistory } from "react-router-dom";
 import pokebola from "../../Imgs/pokeball.png";
 import style from "./Form.module.css";
 import axios from "axios";
-import { getAllTypes, clearHome } from "../../redux/actions";
+import { getAllTypes, updateHome } from "../../redux/actions";
 import Loadding from "../../components/Loadding/Loadding";
+import Modal from "../../components/Modal/Modal";
 
 export default function Form() {
   const [image, setImage] = useState("");
   const dispatch = useDispatch();
   const types = useSelector((state) => state.types);
-  const history = useHistory();
+
+  const [active, setActive] = useState(false);
+  let motivo = "creado";
 
   const [pokemonData, setPokemonData] = useState({
     name: "",
@@ -24,6 +26,7 @@ export default function Form() {
     image: "",
     type: [],
   });
+  let datos;
 
   const [errors, setErrors] = useState({
     name: "",
@@ -81,7 +84,7 @@ export default function Form() {
 
   async function handleSubmit(e) {
     e.preventDefault();
-
+    setActive(!active);
     const arrayErrors = Object.values(errors);
     if (arrayErrors.length === 0) {
       setPokemonData({
@@ -101,15 +104,14 @@ export default function Form() {
         type: "",
       });
 
-      dispatch(clearHome());
+      dispatch(updateHome());
 
       await axios
         .post("http://localhost:3001/pokemons", pokemonData)
         .then((res) => {
-          alert("Pokemon creado exitosamente");
+          datos = res.data;
         })
         .catch((error) => alert(error.message));
-      history.push("/home");
     }
   }
 
@@ -125,7 +127,9 @@ export default function Form() {
       {!types.length ? (
         <Loadding />
       ) : (
-        <div className={style.containerForm}>
+        <div
+          className={active ? style.containerFormActive : style.containerForm}
+        >
           <div>
             <div className={style.legend}>
               <legend>Vamos a crear nuestro</legend>
@@ -242,6 +246,7 @@ export default function Form() {
               </button>
             </div>
           </form>
+          <Modal active={active} setActive={setActive} motivo={motivo} />
         </div>
       )}
     </div>

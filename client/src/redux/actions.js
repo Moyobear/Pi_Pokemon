@@ -11,6 +11,9 @@ export const FILTER_TYPE = "FILTER_TYPE";
 export const FILTER_ORIGEN = "FILTER_ORIGEN";
 export const ORDEN_ALFABETICO = "ORDEN_ALFABETICO";
 export const ORDEN_ATAQUE = "ORDEN_ATAQUE";
+export const GET_UPDATE_POKEMON = "GET_UPDATE_POKEMON";
+export const CLEAR_UPDATE = "CLEAR_UPDATE";
+export const UPDATE_HOME = "UPDATE_HOME";
 
 export const getAllPokemons = () => {
   return async function (dispatch) {
@@ -45,10 +48,7 @@ export const clearDetail = () => {
 
 export const deletePokemon = (id) => {
   return async function (dispatch) {
-    const apidata = await axios.delete(
-      `http://localhost:3001/pokemons/${id}/delete`
-    );
-    const detail = apidata.data;
+    await axios.delete(`http://localhost:3001/pokemons/${id}/delete`);
     dispatch({ type: DELETE_POKEMON, payload: id });
   };
 };
@@ -94,5 +94,24 @@ export const ordenAtaque = (value) => {
   return {
     type: ORDEN_ATAQUE,
     payload: value,
+  };
+};
+
+export const updateHome = () => {
+  return {
+    type: UPDATE_HOME,
+  };
+};
+
+export const getUpdatePokemon = (id) => {
+  return {
+    type: GET_UPDATE_POKEMON,
+    payload: id,
+  };
+};
+
+export const clearUpdate = () => {
+  return {
+    type: CLEAR_UPDATE,
   };
 };

@@ -27,7 +27,7 @@
 }
 .numero:hover {
   transform: scale(1.5);
-  text-shadow: 8px 8px 10px rgb(120, 0, 0);
+  text-shadow: 8px 8px 10px #4e31aa;
 }
 
 .anterior::before,
