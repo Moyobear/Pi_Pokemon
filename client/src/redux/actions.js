@@ -17,7 +17,7 @@ export const UPDATE_HOME = "UPDATE_HOME";
 
 export const getAllPokemons = () => {
   return async function (dispatch) {
-    const apidata = await axios.get("http://localhost:3001/pokemons");
+    const apidata = await axios.get("/pokemons");
     const pokemons = apidata.data;
     dispatch({ type: GET_ALL_POKEMONS, payload: pokemons });
   };
@@ -25,7 +25,7 @@ export const getAllPokemons = () => {
 
 export const getPokemonDetail = (id) => {
   return async function (dispatch) {
-    const apidata = await axios.get(`http://localhost:3001/pokemons/${id}`);
+    const apidata = await axios.get(`/pokemons/${id}`);
     const detail = apidata.data;
     dispatch({ type: GET_POKEMON_DETAIL, payload: detail });
   };
@@ -33,7 +33,7 @@ export const getPokemonDetail = (id) => {
 
 export const getAllTypes = () => {
   return async function (dispatch) {
-    const apidata = await axios.get("http://localhost:3001/types");
+    const apidata = await axios.get("/types");
     const types = apidata.data;
     dispatch({ type: GET_ALL_TYPES, payload: types });
   };
@@ -46,9 +46,23 @@ export const clearDetail = () => {
   };
 };
 
+export const createPokemon = (data) => {
+  return async function (dispatch) {
+    const create = await axios.post("/pokemons", data)
+    return create
+  };
+};
+
+export const updatePokemon = (data) => {
+  return async function (dispatch) {
+    const update = await axios.put("/pokemons", data)
+    return update
+  };
+};
+
 export const deletePokemon = (id) => {
   return async function (dispatch) {
-    await axios.delete(`http://localhost:3001/pokemons/${id}/delete`);
+    await axios.delete(`/pokemons/${id}/delete`);
     dispatch({ type: DELETE_POKEMON, payload: id });
   };
 };
@@ -61,9 +75,7 @@ export const clearHome = () => {
 
 export const searchByName = (name) => {
   return async function (dispatch) {
-    const apiData = await axios.get(
-      `http://localhost:3001/pokemons?name=${name}`
-    );
+    const apiData = await axios.get(`/pokemons?name=${name}`);
     const detail = apiData.data;
     dispatch({ type: SEARCH_BY_NAME, payload: detail });
   };
