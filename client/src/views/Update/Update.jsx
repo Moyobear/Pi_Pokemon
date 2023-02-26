@@ -10,7 +10,6 @@ import {
   updatePokemon,
 } from "../../redux/actions";
 import style from "./Update.module.css";
-import axios from "axios";
 import Modal from "../../components/Modal/Modal";
 
 export default function Update() {
