@@ -4,7 +4,6 @@ import NavBar from "./components/NavBar/NavBar";
 import style from "./styles/App.module.css";
 import axios from "axios";
 axios.defaults.baseURL = "http://localhost:3001";
-// axios.defaults.baseURL = "https://deploy-production-d989.up.railway.app";
 
 function App() {
   const location = useLocation();
