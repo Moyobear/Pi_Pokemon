@@ -5,7 +5,7 @@ const { itemFilter } = require("./pokemonsControllers");
 // *Este controller permite realizar una consulta a la Api para traerme los pokemon por tipo y guardarlos enla base de datos:
 const searchByType = async () => {
   const pokemonDatabase = await Type.findAll();
-  if (pokemonDatabase.length > 0) {
+  if (pokemonDatabase.length > 10) {
     let filtro = pokemonDatabase.map((item) => item.type);
     return filtro;
   } else {
