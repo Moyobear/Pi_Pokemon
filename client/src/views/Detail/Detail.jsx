@@ -13,6 +13,7 @@ import Modal from "../../components/Modal/Modal";
 
 export default function Detail() {
   const { id } = useParams();
+  const detail = useSelector((state) => state.detail);
   const dispatch = useDispatch();
   const [active, setActive] = useState(false);
   let motivo = "eliminado";
@@ -29,10 +30,9 @@ export default function Detail() {
     dispatch(deletePokemon(id));
   };
 
-  const detail = useSelector((state) => state.detail);
   return (
     <div className={active ? style.padreActive : style.padre}>
-      {detail === {} ? (
+      {!detail ? (
         <Loadding />
       ) : (
         <div className={style.detalles}>
@@ -44,9 +44,7 @@ export default function Detail() {
               <h2 className={style.nombre}>{detail.name}</h2>
               <h2 className={style.id}>
                 Id:{" "}
-                {typeof detail.id !== "number"
-                  ? "Base de datos"
-                  : detail.id}
+                {typeof detail.id !== "number" ? "Base de datos" : detail.id}
               </h2>
             </div>
 
